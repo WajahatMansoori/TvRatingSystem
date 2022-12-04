@@ -1,0 +1,56 @@
+﻿@model MediaVoirAdmin.Models.AdminUsers
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <title>CodePen - Panda Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-6 ml-4">
+            <div >
+                <table class="table">
+                    <tr>
+                        <th colspan="2" style="font-weight:bold;font-size:30px;font-family:'Times New Roman';" class="text-center bg-danger text-white">
+                            Admin Login
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Admin Name</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.AdminName, new { @class = "form-control",@Placeholder="Enter Your Name"})
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Password</td>
+                        <td>
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control",@Placeholder="Enter Password" })
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <button class="btn btn-danger">Login</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+}

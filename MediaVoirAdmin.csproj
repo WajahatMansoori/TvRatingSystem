@@ -1,0 +1,383 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4D171B5C-6D82-4C59-9ADF-0FAD688161DD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MediaVoirAdmin</RootNamespace>
+    <AssemblyName>MediaVoirAdmin</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BEnd\css\style-responsive.css" />
+    <Content Include="BEnd\css\style.css" />
+    <Content Include="BEnd\css\table-responsive.css" />
+    <Content Include="BEnd\css\to-do.css" />
+    <Content Include="BEnd\css\zabuto_calendar.css" />
+    <Content Include="BEnd\img\404.png" />
+    <Content Include="BEnd\img\500.png" />
+    <Content Include="BEnd\img\apple-touch-icon.png" />
+    <Content Include="BEnd\img\blog-bg.jpg" />
+    <Content Include="BEnd\img\checkbox-gray.png" />
+    <Content Include="BEnd\img\favicon.png" />
+    <Content Include="BEnd\img\friends\fr-01.jpg" />
+    <Content Include="BEnd\img\friends\fr-02.jpg" />
+    <Content Include="BEnd\img\friends\fr-03.jpg" />
+    <Content Include="BEnd\img\friends\fr-04.jpg" />
+    <Content Include="BEnd\img\friends\fr-05.jpg" />
+    <Content Include="BEnd\img\friends\fr-06.jpg" />
+    <Content Include="BEnd\img\friends\fr-07.jpg" />
+    <Content Include="BEnd\img\friends\fr-08.jpg" />
+    <Content Include="BEnd\img\friends\fr-09.jpg" />
+    <Content Include="BEnd\img\friends\fr-10.jpg" />
+    <Content Include="BEnd\img\friends\fr-11.jpg" />
+    <Content Include="BEnd\img\instagram.jpg" />
+    <Content Include="BEnd\img\login-bg.jpg" />
+    <Content Include="BEnd\img\lorde.jpg" />
+    <Content Include="BEnd\img\mask.png" />
+    <Content Include="BEnd\img\ny.jpg" />
+    <Content Include="BEnd\img\portfolio\port01.jpg" />
+    <Content Include="BEnd\img\portfolio\port02.jpg" />
+    <Content Include="BEnd\img\portfolio\port03.jpg" />
+    <Content Include="BEnd\img\portfolio\port04.jpg" />
+    <Content Include="BEnd\img\portfolio\port05.jpg" />
+    <Content Include="BEnd\img\portfolio\port06.jpg" />
+    <Content Include="BEnd\img\product.jpg" />
+    <Content Include="BEnd\img\profile-01.jpg" />
+    <Content Include="BEnd\img\profile-02.jpg" />
+    <Content Include="BEnd\img\radio-gray.png" />
+    <Content Include="BEnd\img\ui-danro.jpg" />
+    <Content Include="BEnd\img\ui-divya.jpg" />
+    <Content Include="BEnd\img\ui-sam.jpg" />
+    <Content Include="BEnd\img\ui-sherman.jpg" />
+    <Content Include="BEnd\img\ui-zac.jpg" />
+    <Content Include="BEnd\img\weather.jpg" />
+    <Content Include="BEnd\img\zoom.png" />
+    <Content Include="BEnd\lib\advanced-datatable\css\demo_page.css" />
+    <Content Include="BEnd\lib\advanced-datatable\css\demo_table.css" />
+    <Content Include="BEnd\lib\advanced-datatable\css\demo_table_jui.css" />
+    <Content Include="BEnd\lib\advanced-datatable\css\DT_bootstrap.css" />
+    <Content Include="BEnd\lib\advanced-datatable\css\jquery.dataTables.css" />
+    <Content Include="BEnd\lib\advanced-datatable\css\jquery.dataTables_themeroller.css" />
+    <Content Include="BEnd\lib\advanced-datatable\images\back_disabled.png" />
+    <Content Include="BEnd\lib\advanced-datatable\images\back_enabled.png" />
+    <Content Include="BEnd\lib\advanced-datatable\images\back_enabled_hover.png" />
+    <Content Include="BEnd\lib\advanced-datatable\images\details_close.png" />
+    <Content Include="BEnd\lib\advanced-datatable\images\details_open.png" />
+    <Content Include="BEnd\lib\advanced-datatable\images\favicon.ico" />
+    <Content Include="BEnd\lib\advanced-datatable\images\forward_disabled.png" />
+    <Content Include="BEnd\lib\advanced-datatable\images\forward_enabled.png" />
+    <Content Include="BEnd\lib\advanced-datatable\images\forward_enabled_hover.png" />
+    <Content Include="BEnd\lib\advanced-datatable\images\sort_asc.png" />
+    <Content Include="BEnd\lib\advanced-datatable\images\sort_asc_disabled.png" />
+    <Content Include="BEnd\lib\advanced-datatable\images\sort_both.png" />
+    <Content Include="BEnd\lib\advanced-datatable\images\sort_desc.png" />
+    <Content Include="BEnd\lib\advanced-datatable\images\sort_desc_disabled.png" />
+    <Content Include="BEnd\lib\advanced-datatable\js\DT_bootstrap.js" />
+    <Content Include="BEnd\lib\advanced-datatable\js\jquery.dataTables.js" />
+    <Content Include="BEnd\lib\advanced-datatable\js\jquery.dataTables.min.js" />
+    <Content Include="BEnd\lib\advanced-datatable\js\jquery.js" />
+    <Content Include="BEnd\lib\advanced-form-components.js" />
+    <Content Include="BEnd\lib\bootstrap-datepicker\css\datepicker.css" />
+    <Content Include="BEnd\lib\bootstrap-datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="BEnd\lib\bootstrap-daterangepicker\date.js" />
+    <Content Include="BEnd\lib\bootstrap-daterangepicker\daterangepicker-bs3.css" />
+    <Content Include="BEnd\lib\bootstrap-daterangepicker\daterangepicker.css" />
+    <Content Include="BEnd\lib\bootstrap-daterangepicker\daterangepicker.js" />
+    <Content Include="BEnd\lib\bootstrap-daterangepicker\moment.min.js" />
+    <Content Include="BEnd\lib\bootstrap-datetimepicker\css\datetimepicker.css" />
+    <Content Include="BEnd\lib\bootstrap-datetimepicker\js\bootstrap-datetimepicker.js" />
+    <Content Include="BEnd\lib\bootstrap-fileupload\bootstrap-fileupload.css" />
+    <Content Include="BEnd\lib\bootstrap-fileupload\bootstrap-fileupload.js" />
+    <Content Include="BEnd\lib\bootstrap-inputmask\bootstrap-inputmask.min.js" />
+    <Content Include="BEnd\lib\bootstrap-switch.js" />
+    <Content Include="BEnd\lib\bootstrap-timepicker\compiled\timepicker.css" />
+    <Content Include="BEnd\lib\bootstrap-timepicker\js\bootstrap-timepicker.js" />
+    <Content Include="BEnd\lib\bootstrap-wysihtml5\bootstrap-wysihtml5.css" />
+    <Content Include="BEnd\lib\bootstrap-wysihtml5\bootstrap-wysihtml5.js" />
+    <Content Include="BEnd\lib\bootstrap-wysihtml5\wysihtml5-0.3.0.js" />
+    <Content Include="BEnd\lib\bootstrap\css\bootstrap.css" />
+    <Content Include="BEnd\lib\bootstrap\css\bootstrap.min.css" />
+    <Content Include="BEnd\lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="BEnd\lib\bootstrap\js\bootstrap.js" />
+    <Content Include="BEnd\lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="BEnd\lib\calendar-conf-events.js" />
+    <Content Include="BEnd\lib\chart-master\Chart.js" />
+    <Content Include="BEnd\lib\chartjs-conf.js" />
+    <Content Include="BEnd\lib\ckeditor\ckeditor.js" />
+    <Content Include="BEnd\lib\common-scripts.js" />
+    <Content Include="BEnd\lib\dropzone\css\dropzone.css" />
+    <Content Include="BEnd\lib\dropzone\dropzone.js" />
+    <Content Include="BEnd\lib\dropzone\images\spritemap%402x.png" />
+    <Content Include="BEnd\lib\dropzone\images\spritemap.png" />
+    <Content Include="BEnd\lib\easy-pie-chart.js" />
+    <Content Include="BEnd\lib\fancybox\jquery.fancybox.css" />
+    <Content Include="BEnd\lib\fancybox\jquery.fancybox.js" />
+    <Content Include="BEnd\lib\file-uploader\css\jquery.fileupload-noscript.css" />
+    <Content Include="BEnd\lib\file-uploader\css\jquery.fileupload-ui-noscript.css" />
+    <Content Include="BEnd\lib\file-uploader\css\jquery.fileupload-ui.css" />
+    <Content Include="BEnd\lib\file-uploader\css\jquery.fileupload.css" />
+    <Content Include="BEnd\lib\file-uploader\img\loading.gif" />
+    <Content Include="BEnd\lib\file-uploader\img\progressbar.gif" />
+    <Content Include="BEnd\lib\file-uploader\js\cors\jquery.xdr-transport.js" />
+    <Content Include="BEnd\lib\file-uploader\js\jquery.fileupload-audio.js" />
+    <Content Include="BEnd\lib\file-uploader\js\jquery.fileupload-image.js" />
+    <Content Include="BEnd\lib\file-uploader\js\jquery.fileupload-process.js" />
+    <Content Include="BEnd\lib\file-uploader\js\jquery.fileupload-ui.js" />
+    <Content Include="BEnd\lib\file-uploader\js\jquery.fileupload-validate.js" />
+    <Content Include="BEnd\lib\file-uploader\js\jquery.fileupload-video.js" />
+    <Content Include="BEnd\lib\file-uploader\js\jquery.fileupload.js" />
+    <Content Include="BEnd\lib\file-uploader\js\jquery.iframe-transport.js" />
+    <Content Include="BEnd\lib\file-uploader\js\main.js" />
+    <Content Include="BEnd\lib\file-uploader\js\vendor\jquery.ui.widget.js" />
+    <Content Include="BEnd\lib\flotchart-conf.js" />
+    <Content Include="BEnd\lib\flot\jquery.flot.crosshair.js" />
+    <Content Include="BEnd\lib\flot\jquery.flot.js" />
+    <Content Include="BEnd\lib\flot\jquery.flot.pie.js" />
+    <Content Include="BEnd\lib\flot\jquery.flot.resize.js" />
+    <Content Include="BEnd\lib\flot\jquery.flot.stack.js" />
+    <Content Include="BEnd\lib\font-awesome\css\font-awesome.css" />
+    <Content Include="BEnd\lib\font-awesome\css\font-awesome.min.css" />
+    <Content Include="BEnd\lib\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="BEnd\lib\form-component.js" />
+    <Content Include="BEnd\lib\form-validation-script.js" />
+    <Content Include="BEnd\lib\fullcalendar\bootstrap-fullcalendar.css" />
+    <Content Include="BEnd\lib\fullcalendar\fullcalendar.min.js" />
+    <Content Include="BEnd\lib\google-maps\data\points.js" />
+    <Content Include="BEnd\lib\google-maps\maplace.js" />
+    <Content Include="BEnd\lib\gritter-conf.js" />
+    <Content Include="BEnd\lib\gritter\css\jquery.gritter.css" />
+    <Content Include="BEnd\lib\gritter\css\jquery.gritter0.css" />
+    <Content Include="BEnd\lib\gritter\images\gritter-light.png" />
+    <Content Include="BEnd\lib\gritter\images\gritter-long.png" />
+    <Content Include="BEnd\lib\gritter\images\gritter.png" />
+    <Content Include="BEnd\lib\gritter\images\ie-spacer.gif" />
+    <Content Include="BEnd\lib\gritter\js\jquery.gritter.js" />
+    <Content Include="BEnd\lib\jquery-easy-pie-chart\jquery.easy-pie-chart.css" />
+    <Content Include="BEnd\lib\jquery-easy-pie-chart\jquery.easy-pie-chart.js" />
+    <Content Include="BEnd\lib\jquery-ui-1.9.2.custom.min.js" />
+    <Content Include="BEnd\lib\jquery.backstretch.min.js" />
+    <Content Include="BEnd\lib\jquery.dcjqaccordion.2.7.js" />
+    <Content Include="BEnd\lib\jquery.nicescroll.js" />
+    <Content Include="BEnd\lib\jquery.scrollTo.min.js" />
+    <Content Include="BEnd\lib\jquery.sparkline.js" />
+    <Content Include="BEnd\lib\jquery.tagsinput.js" />
+    <Content Include="BEnd\lib\jquery.ui.touch-punch.min.js" />
+    <Content Include="BEnd\lib\jquery\jquery.js" />
+    <Content Include="BEnd\lib\jquery\jquery.min.js" />
+    <Content Include="BEnd\lib\morris-conf.js" />
+    <Content Include="BEnd\lib\morris\morris.min.js" />
+    <Content Include="BEnd\lib\php-mail-form\validate.js" />
+    <Content Include="BEnd\lib\raphael\raphael.min.js" />
+    <Content Include="BEnd\lib\sparkline-chart.js" />
+    <Content Include="BEnd\lib\tasks.js" />
+    <Content Include="BEnd\lib\xchart\d3.v3.min.js" />
+    <Content Include="BEnd\lib\xchart\xcharts.css" />
+    <Content Include="BEnd\lib\xchart\xcharts.min.js" />
+    <Content Include="BEnd\lib\zabuto_calendar.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="BEnd\lib\advanced-datatable\images\Sorting icons.psd" />
+    <Content Include="BEnd\lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="BEnd\lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="BEnd\lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="BEnd\lib\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="BEnd\lib\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="BEnd\lib\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="BEnd\lib\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="BEnd\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="BEnd\lib\font-awesome\fonts\FontAwesome.otf" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminPanel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\MediaVoirContext.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminUsers.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ChannelList.cs" />
+    <Compile Include="Models\DataPoint.cs" />
+    <Compile Include="Models\RatingData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Admin\PakistanTVRatingsForBroadcasters.cshtml" />
+    <Content Include="Views\Admin\PakistanTVRatingsForAdvertiser.cshtml" />
+    <Content Include="Views\Admin\PakistanNewsChannelRatings.cshtml" />
+    <Content Include="Views\Admin\PakistanEntertainmentChannelRatings.cshtml" />
+    <Content Include="Views\Admin\PakistanSportsChannelRatings.cshtml" />
+    <Content Include="Views\Admin\EditPakistanTVRatingsForBroadcasters.cshtml" />
+    <Content Include="Views\Admin\EditPakistanSportsChannelRatings.cshtml" />
+    <Content Include="Views\Admin\EditTopSportsChannelsInPakistan.cshtml" />
+    <Content Include="Views\Admin\Rating_PakistanTVRatingsForBroadcasters.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4036</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4036/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

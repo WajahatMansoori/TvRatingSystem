@@ -1,0 +1,150 @@
+﻿@model IEnumerable<MediaVoirAdmin.Models.RatingData>
+
+@{
+    ViewBag.Title = "PakistanSportsChannelRatings";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+@{
+    int TableOnecount = 0;
+    int TableTwocount = 0;
+    int TableThreecount = 0;
+
+    if (ViewBag.RatingData != null)
+    {
+        foreach (var item in ViewBag.RatingData)
+        {
+            if (item.CategotyId == 5 && TableOnecount == 0)
+            {
+                <table class="table">
+                    <tr>
+                        <th colspan="4" class="text-center" style="font-weight:bold;background-color:black;color:white;font-family:'Times New Roman';font-size:25px">
+                            Pakistan Sports Channel Ratings
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChannelName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RatingPercentage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ViewersPercentage)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var data in Model.Where(x => x.CategotyId == 5))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ChannelName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.RatingPercentage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ViewersPercentage)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "EditPakistanSportsChannelRatings", new { id = data.RatingId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = data.RatingId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                TableOnecount = TableOnecount + 1;
+            }
+
+            if (item.CategotyId == 18 && TableTwocount == 0)
+            {
+                <table class="table">
+                    <tr>
+                        <th colspan="4" class="text-center" style="font-weight:bold;background-color:black;color:white;font-family:'Times New Roman';font-size:25px">
+                            Top Sports Channels In Pakistan
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChannelName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RatingPercentage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ViewersPercentage)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var data in Model.Where(x => x.CategotyId == 18))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ChannelName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.RatingPercentage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ViewersPercentage)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "EditTopSportsChannelsInPakistan", new { id = data.RatingId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = data.RatingId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                TableTwocount = TableTwocount + 1;
+            }
+
+            if (item.CategotyId == 19 && TableThreecount == 0)
+            {
+                <table class="table">
+                    <tr>
+                        <th colspan="4" class="text-center" style="font-weight:bold;background-color:black;color:white;font-family:'Times New Roman';font-size:25px">
+                            Top Sports Program In Pakistan
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChannelName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RatingPercentage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ViewersPercentage)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var data in Model.Where(x => x.CategotyId == 19))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ChannelName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.RatingPercentage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ViewersPercentage)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = data.RatingId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = data.RatingId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                TableThreecount = TableThreecount + 1;
+            }
+        }
+    }
+}

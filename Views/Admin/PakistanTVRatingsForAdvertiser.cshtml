@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MediaVoirAdmin.Models.RatingData>
+
+@{
+    ViewBag.Title = "PakistanTVRatingsForAdvertiser";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th colspan="4" class="text-center" style="font-weight:bold;background-color:black;color:white;font-family:'Times New Roman';font-size:25px">
+            Pakistan TV Ratings For Advertiser
+        </th>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ChannelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RatingPercentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ViewersPercentage)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChannelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RatingPercentage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ViewersPercentage)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RatingId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.RatingId })
+            </td>
+        </tr>
+    }
+
+</table>

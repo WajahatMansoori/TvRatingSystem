@@ -1,0 +1,337 @@
+﻿@model IEnumerable<MediaVoirAdmin.Models.RatingData>
+@{
+    /**/
+
+    ViewBag.Title = "PakistanNewsChannelRatings";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+@{
+    int TableOnecount = 0;
+    int TableTwocount = 0;
+    int TableThreecount = 0;
+    int TableFourcount = 0;
+    int TableFivecount = 0;
+    int TableSixcount = 0;
+    int TableSevencount = 0;
+
+    if (ViewBag.RatingData != null)
+    {
+        foreach (var item in ViewBag.RatingData)
+        {
+            if (item.CategotyId == 3 && TableOnecount == 0)
+            {
+                <table class="table">
+                    <tr>
+                        <th colspan="4" class="text-center" style="font-weight:bold;background-color:black;color:white;font-family:'Times New Roman';font-size:25px">
+                            Pakistan News Channel Ratings
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChannelName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RatingPercentage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ViewersPercentage)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var data in Model.Where(x => x.CategotyId == 3))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ChannelName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.RatingPercentage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ViewersPercentage)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = data.RatingId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = data.RatingId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+                TableOnecount = TableOnecount + 1;
+            }
+            if (item.CategotyId == 6 && TableTwocount == 0)
+            {
+                <table class="table">
+                    <tr>
+                        <th colspan="4" class="text-center" style="font-weight:bold;background-color:black;color:white;font-family:'Times New Roman';font-size:25px">
+                            Top News Channels in Pakistan
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChannelName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RatingPercentage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ViewersPercentage)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var data in Model.Where(x => x.CategotyId == 6))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ChannelName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.RatingPercentage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ViewersPercentage)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = data.RatingId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = data.RatingId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                TableTwocount = TableTwocount + 1;
+            }
+
+            if (item.CategotyId == 7 && TableThreecount == 0)
+            {
+                <table class="table">
+                    <tr>
+                        <th colspan="4" class="text-center" style="font-weight:bold;background-color:black;color:white;font-family:'Times New Roman';font-size:25px">
+                            Top News Shows in Pakistan
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChannelName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RatingPercentage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ViewersPercentage)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var data in Model.Where(x => x.CategotyId == 7))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ChannelName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.RatingPercentage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ViewersPercentage)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = data.RatingId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = data.RatingId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                TableThreecount = TableThreecount + 1;
+            }
+
+            if (item.CategotyId == 8 && TableFourcount == 0)
+            {
+                <table class="table">
+                    <tr>
+                        <th colspan="4" class="text-center" style="font-weight:bold;background-color:black;color:white;font-family:'Times New Roman';font-size:25px">
+                            Top News Shows-Time Slot Wise
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChannelName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RatingPercentage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ViewersPercentage)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var data in Model.Where(x => x.CategotyId == 8))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ChannelName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.RatingPercentage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ViewersPercentage)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = data.RatingId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = data.RatingId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                TableFourcount = TableFourcount + 1;
+            }
+
+            if (item.CategotyId == 9 && TableFivecount == 0)
+            {
+                <table class="table">
+                    <tr>
+                        <th colspan="4" class="text-center" style="font-weight:bold;background-color:black;color:white;font-family:'Times New Roman';font-size:25px">
+                            Top News Bulletins In Pakistan
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChannelName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RatingPercentage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ViewersPercentage)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var data in Model.Where(x => x.CategotyId == 9))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ChannelName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.RatingPercentage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ViewersPercentage)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = data.RatingId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = data.RatingId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                TableFivecount = TableFivecount + 1;
+            }
+
+            if (item.CategotyId == 10 && TableSixcount == 0)
+            {
+                <table class="table">
+                    <tr>
+                        <th colspan="4" class="text-center" style="font-weight:bold;background-color:black;color:white;font-family:'Times New Roman';font-size:25px">
+                            Top News Headlines In Pakistan
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChannelName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RatingPercentage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ViewersPercentage)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var data in Model.Where(x => x.CategotyId == 10))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ChannelName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.RatingPercentage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ViewersPercentage)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = data.RatingId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = data.RatingId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                TableSixcount = TableSixcount + 1;
+            }
+
+            if (item.CategotyId == 11 && TableSevencount == 0)
+            {
+                <table class="table">
+                    <tr>
+                        <th colspan="4" class="text-center" style="font-weight:bold;background-color:black;color:white;font-family:'Times New Roman';font-size:25px">
+                            Top Transmission In Pakistan
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChannelName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RatingPercentage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ViewersPercentage)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var data in Model.Where(x => x.CategotyId == 11))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ChannelName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.RatingPercentage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => data.ViewersPercentage)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = data.RatingId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = data.RatingId })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                TableSevencount = TableSevencount + 1;
+            }
+        }
+
+
+    }
+}
+
+
+
+

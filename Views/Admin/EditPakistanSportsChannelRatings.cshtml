@@ -1,0 +1,42 @@
+﻿@model MediaVoirAdmin.Models.RatingData
+
+@{
+    ViewBag.Title = "EditPakistanSportsChannelRatings";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Update Rating Data</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.TextBox("RatingId", (object)ViewBag.RatingId, new { @class = "hidden" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RatingPercentage, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.TextBox("RatingPercentage", (object)ViewBag.RatingPercentage, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.ValidationMessageFor(model => model.RatingPercentage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ViewersPercentage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("ViewersPercentage", (object)ViewBag.ViewersPercentage, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.ValidationMessageFor(model => model.ViewersPercentage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-outline-danger" />
+            </div>
+        </div>
+    </div>
+}
+
