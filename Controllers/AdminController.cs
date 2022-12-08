@@ -388,7 +388,7 @@ namespace MediaVoirAdmin.Controllers
             }
         }
 
-        public ActionResult Rating_PakistanTVRatingsForBroadcasters()
+        public List<DataPoint> GetCategoryWiseGraph(int CategoryId)
         {
             List<DataPoint> dataPoint = new List<DataPoint>();
             List<RatingData> list = new List<RatingData>();
@@ -397,7 +397,7 @@ namespace MediaVoirAdmin.Controllers
             string Query = "select r.ViewersPerCentage,ch.ChannelName from RatingData r (NOLOCK) INNER JOIN OG_ChannelList ch (NOLOCK) on ch.ChannelId=r.ChannelId where CategoryId=@CatId";
             con.Open();
             SqlCommand cmd = new SqlCommand(Query, con);
-            cmd.Parameters.AddWithValue("@CatId", (int)CategoryList.PakistanTVRatingsForBroadcasters);
+            cmd.Parameters.AddWithValue("@CatId", (int)CategoryList.PakistanTVRatingsForAdvertiser);
             SqlDataReader sdr = cmd.ExecuteReader();
             if (sdr.HasRows)
             {
@@ -415,7 +415,39 @@ namespace MediaVoirAdmin.Controllers
             {
                 dataPoint.Add(new DataPoint(item.ChannelName, item.ViewersPercentage));
             }
-            ViewBag.RatingData= JsonConvert.SerializeObject(dataPoint);
+            return dataPoint;
+            //ViewBag.RatingData = JsonConvert.SerializeObject(dataPoint);
+        }
+
+        public ActionResult Rating_PakistanTVRatingsForBroadcasters()
+        {
+            //List<DataPoint> dataPoint = new List<DataPoint>();
+            //List<RatingData> list = new List<RatingData>();
+            //DataTable dt = new DataTable();
+            //SqlConnection con = new SqlConnection(sqlcon);
+            //string Query = "select r.ViewersPerCentage,ch.ChannelName from RatingData r (NOLOCK) INNER JOIN OG_ChannelList ch (NOLOCK) on ch.ChannelId=r.ChannelId where CategoryId=@CatId";
+            //con.Open();
+            //SqlCommand cmd = new SqlCommand(Query, con);
+            //cmd.Parameters.AddWithValue("@CatId", (int)CategoryList.PakistanTVRatingsForBroadcasters);
+            //SqlDataReader sdr = cmd.ExecuteReader();
+            //if (sdr.HasRows)
+            //{
+            //    while (sdr.Read())
+            //    {
+            //        RatingData r = new RatingData();
+            //        //r.RatingPercentage = Convert.ToDecimal(sdr["RatingPercentage"].ToString());
+            //        r.ChannelName = sdr["ChannelName"].ToString();
+            //        r.ViewersPercentage = Convert.ToDecimal(sdr["ViewersPerCentage"].ToString());
+            //        list.Add(r);
+            //    }
+            //}
+            //con.Close();
+            //foreach (var item in list)
+            //{
+            //    dataPoint.Add(new DataPoint(item.ChannelName, item.ViewersPercentage));
+            //}
+            List<DataPoint> data = GetCategoryWiseGraph((int)CategoryList.PakistanTVRatingsForBroadcasters);
+            ViewBag.RatingData= JsonConvert.SerializeObject(data);
             return View();
         }
     }
