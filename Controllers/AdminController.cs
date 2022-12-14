@@ -450,5 +450,49 @@ namespace MediaVoirAdmin.Controllers
             ViewBag.RatingData= JsonConvert.SerializeObject(data);
             return View();
         }
+
+        public ActionResult RatingDataUpdateThrough_ModalPopup()
+        {
+            return View();
+        }
+
+        public ActionResult DropdownChangeResult()
+        {
+            DataTable dt = new DataTable();
+            List<RatingData> list = new List<RatingData>();
+            SqlConnection con = new SqlConnection(sqlcon);
+            string Query = "select rd.RatingId,ch.ChannelName,rd.RatingPercentage,rd.ViewersPerCentage,cat.CategoryId from RatingData rd (NOLOCK) INNER JOIN OG_ChannelList ch (NOLOCK) on ch.ChannelId=rd.ChannelId left join Og_Category cat (NOLOCK) on cat.CategoryId=rd.CategoryId where rd.CategoryId=@CategoryId and ch.IsActive=1 and rd.IsActive=1 or ParentId=@ParentId";
+            con.Open();
+            SqlCommand cmd = new SqlCommand(Query, con);
+            cmd.Parameters.AddWithValue("@CategoryId", (int)CategoryList.PakistanNewsChannelRatings);
+            cmd.Parameters.AddWithValue("@ParentId", (int)CategoryList.PakistanNewsChannelRatings);
+            SqlDataReader sdr = cmd.ExecuteReader();
+            if (sdr.HasRows == true)
+            {
+                while (sdr.Read())
+                {
+                    RatingData r = new RatingData();
+                    int RatingId = Convert.ToInt32(sdr["RatingId"].ToString());
+                    int CategoryId = Convert.ToInt32(sdr["CategoryId"].ToString());
+                    string ChannelName = sdr["ChannelName"].ToString();
+                    decimal RatingPercentage = Convert.ToDecimal(sdr["RatingPercentage"].ToString());
+                    decimal ViewersPercentage = Convert.ToDecimal(sdr["ViewersPerCentage"].ToString());
+                    r.RatingId = RatingId;
+                    r.CategotyId = CategoryId;
+                    r.ChannelName = ChannelName;
+                    r.RatingPercentage = RatingPercentage;
+                    r.ViewersPercentage = ViewersPercentage;
+                    list.Add(r);
+                }
+                con.Close();
+                ViewBag.RatingData = list;
+                return View(list);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+
+        }
     }
 }

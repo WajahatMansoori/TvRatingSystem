@@ -10,11 +10,28 @@
 <head>
     <hr />
     <script>
-    window.onload = function () {
+        window.onload = function () {
+
+            CanvasJS.addColorSet("greenShades",
+                [//colorSet Array
+
+                    "#333FFF",
+                    "#6633FF",
+                    "#FF3333",
+                    "#F40505",
+                    "#6FF405",
+                    "#F47D05",
+                    "#05F471",
+                    "#05D5F4",
+                    "#D305F4",
+                    "#A09AE8",
+                    "#F4E10E"
+                ]);
 
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
         theme: "light1", // "light1", "light2", "dark1", "dark2"
+        colorSet: "greenShades",
         title: {
             text: "Rating Data"
         },
