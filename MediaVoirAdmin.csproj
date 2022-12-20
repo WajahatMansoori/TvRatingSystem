@@ -331,6 +331,8 @@
     <Content Include="Views\Admin\Rating_PakistanTVRatingsForBroadcasters.cshtml" />
     <Content Include="Views\Admin\RatingDataUpdateThrough_ModalPopup.cshtml" />
     <Content Include="Views\Admin\DropdownChangeResult.cshtml" />
+    <Content Include="Views\Admin\PakistanNewsChannelRatings_V2.cshtml" />
+    <Content Include="Views\Admin\PakistanNewsChannelRatings_V3.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

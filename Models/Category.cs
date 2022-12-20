@@ -9,7 +9,8 @@ namespace MediaVoirAdmin.Models
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
-        public int CategoryName { get; set; }
+        public string CategoryName { get; set; }
         public int ParentId { get; set; }
+        public int CompanyId { get; set; }
     }
 }

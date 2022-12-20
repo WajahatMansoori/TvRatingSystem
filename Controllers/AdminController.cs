@@ -8,8 +8,10 @@ using System.Data;
 using System.Data.Odbc;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace MediaVoirAdmin.Controllers
 {
@@ -454,6 +456,197 @@ namespace MediaVoirAdmin.Controllers
         public ActionResult RatingDataUpdateThrough_ModalPopup()
         {
             return View();
+        }
+
+        public ActionResult PakistanNewsChannelRatings_V2(int? CompanyId,int? CategoryId)
+        {
+            List<RatingData> list = new List<RatingData>();
+            List<Category> catlist = new List<Category>();
+            List<Company> companylist = new List<Company>();
+            RatingData vm = new RatingData();
+            vm.catlist = new List<SelectListItem>();
+            vm.CompanyList = new List<SelectListItem>();
+            if (CompanyId == null)
+            {
+                CompanyId = 1;
+            }
+            DataTable dtcompany = new DataTable();
+            dtcompany = GetAllCompanies();
+            if(dtcompany!=null && dtcompany.Rows.Count > 0)
+            {
+                for (int i = 0; i < dtcompany.Rows.Count; i++)
+                {
+                    Company cm = new Company();
+                    int Company_Id = Convert.ToInt32(dtcompany.Rows[i]["CompanyId"].ToString());
+                    string CompanyName = dtcompany.Rows[i]["CompanyName"].ToString();
+                    cm.CompanyId = Company_Id;
+                    cm.CompanyName = CompanyName;
+                    companylist.Add(cm);
+                }
+                foreach (var item in companylist)
+                {
+                    var Company = new SelectListItem()
+                    {
+                        Value = item.CompanyId.ToString(),
+                        Text = item.CompanyName
+                    };
+                    vm.CompanyList.Add(Company);
+                }
+
+            }
+            if (CategoryId != null)
+            {
+                DataTable dtratingdata = new DataTable();
+                dtratingdata = GetCategoryWiseData((int)CategoryId);
+                if (dtratingdata != null)
+                {
+                    for (int i = 0; i < dtratingdata.Rows.Count; i++)
+                    {
+                        RatingData r = new RatingData();
+                        int RatingId = Convert.ToInt32(dtratingdata.Rows[i]["RatingId"].ToString());
+                        string ChildCategoryName = dtratingdata.Rows[i]["ChildCategoryName"].ToString();
+                        decimal RatingPercentage = Convert.ToDecimal(dtratingdata.Rows[i]["RatingPercentage"].ToString());
+                        decimal ViewshipPer = Convert.ToDecimal(dtratingdata.Rows[i]["ViewshipPercentage"].ToString());
+                        //int Category_Id = Convert.ToInt32(dtratingdata.Rows[i]["CategoryId"].ToString());
+                        r.RatingId = RatingId;
+                        r.ChildCategoryName = ChildCategoryName;
+                        r.RatingPercentage = RatingPercentage;
+                        r.ViewersPercentage = ViewshipPer;
+                        //r.CategotyId = Category_Id;
+                        list.Add(r);
+                        ViewBag.RatingData = list;
+                    }
+                }
+                return View(list);
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+        
+        [HttpGet]
+        public ActionResult PakistanNewsChannelRatings_V3(int? CategoryId)
+        {
+            if (CategoryId == null)
+            {
+                CategoryId = 3;
+            }
+            DataTable dtratingdata = new DataTable();
+            List<RatingData> list = new List<RatingData>();
+            dtratingdata = GetCategoryWiseData((int)CategoryId);
+            if (dtratingdata != null)
+            {
+                for (int i = 0; i < dtratingdata.Rows.Count; i++)
+                {
+                    RatingData r = new RatingData();
+                    int RatingId = Convert.ToInt32(dtratingdata.Rows[i]["RatingId"].ToString());
+                    string ChildCategoryName = dtratingdata.Rows[i]["ChildCategoryName"].ToString();
+                    decimal RatingPercentage = Convert.ToDecimal(dtratingdata.Rows[i]["RatingPercentage"].ToString());
+                    decimal ViewshipPer = Convert.ToDecimal(dtratingdata.Rows[i]["ViewshipPercentage"].ToString());
+                    r.RatingId = RatingId;
+                    r.ChildCategoryName = ChildCategoryName;
+                    r.RatingPercentage = RatingPercentage;
+                    r.ViewersPercentage = ViewshipPer;
+                    list.Add(r);
+                }
+            }
+            return View(list);
+            
+        }
+
+        public DataTable GetCategoryWiseData(int CategoryId)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection(sqlcon);
+            SqlCommand cmd = new SqlCommand("Admin_SelectCategoryWiseData", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Categoryid", CategoryId);
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            adp.Fill(dt);
+            return dt;
+
+        }
+
+        public DataTable GetCompanyWiseData(int CompanyId, int CategoryId)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection(sqlcon);
+            SqlCommand cmd = new SqlCommand("Admiun_SelectCompanyWiseData", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Categoryid", CategoryId);
+            cmd.Parameters.AddWithValue("@CompanyId", CompanyId);
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            adp.Fill(dt);
+            return dt;
+
+        }
+        //[HttpPost]
+        //public ActionResult GetCategoryByCompanyId(int companyId)
+        //{
+        //    DataTable dtcat = new DataTable();
+        //    dtcat = Select_CategoryOnCompanyChange(companyId);
+        //    if(dtcat!=null && dtcat.Rows.Count > 0)
+        //    {
+        //        //return JsonConvert.SerializeObject(dtcat);
+        //        //return Json(new { data= DataTableToJSONWithStringBuilder(dtcat) },JsonRequestBehavior.AllowGet) ;
+        //        return Json(new { data= DataTableToJSONWithJSONNet(dtcat) },JsonRequestBehavior.AllowGet);
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("PakistanNewsChannelRatings_V2", "Admin");
+        //    }
+        //}
+
+
+   
+
+        public DataTable Select_CategoryOnCompanyChange(int CompanyId)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection(sqlcon);
+            SqlCommand cmd = new SqlCommand("Admin_Select_CategoryOnCompanyChange", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@CompanyId", CompanyId);
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            adp.Fill(dt);
+            return dt;
+
+        }
+
+        public DataTable GetAllCompanies()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection(sqlcon);
+            SqlCommand cmd = new SqlCommand("Admin_GetAllCompanies", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            adp.Fill(dt);
+            return dt;
+
+        }
+
+        [HttpPost]
+        public ActionResult GetCatByCompanyId(int CompanyId)
+        {
+            var cat = Getcat().Where(x => x.CompanyId == CompanyId).ToList();
+            return Json(new { data = cat }, JsonRequestBehavior.AllowGet);
+        }
+
+        public List<Category> Getcat()
+        {
+            List<Category> cat = new List<Category>
+            {
+                new Category{ CategoryId =1,CategoryName="Pakistan TV Ratings For Broadcasters",CompanyId=1},
+                new Category{ CategoryId =2,CategoryName="Pakistan TV Ratings For Advertiser",CompanyId=1},
+                new Category{ CategoryId =3,CategoryName="Pakistan News Channel Ratings",CompanyId=1},
+                new Category{ CategoryId =4,CategoryName="Pakistan Entertainment Channel Ratings",CompanyId=1},
+                new Category{ CategoryId =5,CategoryName="Pakistan Sports Channel Ratings",CompanyId=1},
+                new Category{ CategoryId =6,CategoryName="Pakistan TV Ratings For Broadcasters_V2",CompanyId=2},
+                new Category{ CategoryId =7,CategoryName="Pakistan TV Ratings For Advertiser_V2",CompanyId=2},
+                new Category{ CategoryId =8,CategoryName="Pakistan News Channel Ratings_V2",CompanyId=2},
+            };
+            return cat;
         }
 
         public ActionResult DropdownChangeResult()

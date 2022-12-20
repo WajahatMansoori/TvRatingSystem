@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MediaVoirAdmin.Models.RatingData>
+@{
+    ViewBag.Title = "PakistanNewsChannelRatings_V3";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<table>
+    <tr>
+        <th class="text-center" style="background-color:black;color:white;font-size:30px">Pakistan News Channel Rating</th>
+    </tr>
+    <tr>
+        <th>Sno</th>
+        <th>Child Category Name</th>
+        <th>Rating Percentage</th>
+        <th>Viewership Percentage</th>
+
+    </tr>
+
+
+    @{
+        int Sno = 1;
+        
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Sno</td>
+                    <td>@item.ChildCategoryName</td>
+                    <td>@item.RatingPercentage</td>
+                    <td>@item.ViewersPercentage</td>
+                </tr>
+                Sno = Sno + 1;
+            }
+        
+    }
+
+</table>
+
+

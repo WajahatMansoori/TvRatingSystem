@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MediaVoirAdmin.Models
 {
@@ -12,6 +13,17 @@ namespace MediaVoirAdmin.Models
         public decimal RatingPercentage { get; set; }
         public decimal ViewersPercentage { get; set; }
         public string ChannelName { get; set; }
+        public string CategoryName { get; set; }
+        public string CompanyName { get; set; }
+        public List<SelectListItem> catlist { get; set; }
+        public List<SelectListItem> CompanyList { get; set; }
+        public string ChildCategoryName { get; set; }
+    }
+
+    public class Company
+    {
+        public int CompanyId { get; set; }
+        public string CompanyName { get; set; }
     }
 
     public enum CategoryList
