@@ -135,13 +135,42 @@ namespace MediaVoirAdmin.Controllers
         public ActionResult PakistanNewsChannelRatings()
         {
             DataTable dt = new DataTable();
+            DataTable dtchannels = new DataTable();
+            List<Channel> channelList = new List<Channel>();
+            List<SelectListItem> channelList2 = new List<SelectListItem>();
+            dtchannels = GetAllChannelList();
+            if (dtchannels != null)
+            {
+                for (int i = 0; i < dtchannels.Rows.Count; i++)
+                {
+                    Channel c = new Channel();
+                    int Channel_Id = Convert.ToInt32(dtchannels.Rows[i]["ChannelId"].ToString());
+                    string Channel_Name = dtchannels.Rows[i]["ChannelName"].ToString();
+                    c.ChannelId = Channel_Id;
+                    c.ChannelName = Channel_Name;
+                    channelList.Add(c);
+                    //ViewBag.ChannelList = channelList;
+                }
+                foreach (var item in channelList)
+                {
+                    var Channel = new SelectListItem()
+                    {
+                        Value = item.ChannelId.ToString(),
+                        Text = item.ChannelName
+                    };
+                    channelList2.Add(Channel);
+                    
+                }
+                ViewBag.ChannelList = channelList2;
+            }
             List<RatingData> list = new List<RatingData>();
             SqlConnection con = new SqlConnection(sqlcon);
-            string Query = "select rd.RatingId,ch.ChannelName,rd.RatingPercentage,rd.ViewersPerCentage,cat.CategoryId from RatingData rd (NOLOCK) INNER JOIN OG_ChannelList ch (NOLOCK) on ch.ChannelId=rd.ChannelId left join Og_Category cat (NOLOCK) on cat.CategoryId=rd.CategoryId where rd.CategoryId=@CategoryId and ch.IsActive=1 and rd.IsActive=1 or ParentId=@ParentId";
+            //string Query = "select rd.RatingId,ch.ChannelName,rd.RatingPercentage,rd.ViewersPerCentage,cat.CategoryId from RatingData rd (NOLOCK) INNER JOIN OG_ChannelList ch (NOLOCK) on ch.ChannelId=rd.ChannelId left join Og_Category cat (NOLOCK) on cat.CategoryId=rd.CategoryId where rd.CategoryId=@CategoryId and ch.IsActive=1 and rd.IsActive=1 or ParentId=@ParentId";
+            string Query = "select r.RatingId,ch.ChildCategoryName,r.RatingPercentage,r.ViewshipPercentage,cat.CompanyId,ISNULL(cha.ChannelName,'')as ChannelName from ratingdata r inner join ChildCategory ch on ch.ChildCategoryId=r.ChildCategoryId inner join SubCetgory sb on sb.SubCategoryId=ch.SubCategoryId inner join Category cat on cat.CategoryId=sb.CategoryId LEFT join og_channellist cha on cha.ChannelId=ch.ChannelId where cat.CategoryId=@CategoryId";
             con.Open();
             SqlCommand cmd = new SqlCommand(Query, con);
             cmd.Parameters.AddWithValue("@CategoryId", (int)CategoryList.PakistanNewsChannelRatings);
-            cmd.Parameters.AddWithValue("@ParentId", (int)CategoryList.PakistanNewsChannelRatings);
+            //cmd.Parameters.AddWithValue("@ParentId", (int)CategoryList.PakistanNewsChannelRatings);
             SqlDataReader sdr = cmd.ExecuteReader();
             if (sdr.HasRows == true)
             {
@@ -149,12 +178,12 @@ namespace MediaVoirAdmin.Controllers
                 {
                     RatingData r = new RatingData();
                     int RatingId = Convert.ToInt32(sdr["RatingId"].ToString());
-                    int CategoryId = Convert.ToInt32(sdr["CategoryId"].ToString());
+                    string ChildCategoryName = sdr["ChildCategoryName"].ToString();
                     string ChannelName = sdr["ChannelName"].ToString();
                     decimal RatingPercentage = Convert.ToDecimal(sdr["RatingPercentage"].ToString());
-                    decimal ViewersPercentage = Convert.ToDecimal(sdr["ViewersPerCentage"].ToString());
+                    decimal ViewersPercentage = Convert.ToDecimal(sdr["ViewshipPercentage"].ToString());
                     r.RatingId = RatingId;
-                    r.CategotyId = CategoryId;
+                    r.ChildCategoryName = ChildCategoryName;
                     r.ChannelName = ChannelName;
                     r.RatingPercentage = RatingPercentage;
                     r.ViewersPercentage = ViewersPercentage;
@@ -619,6 +648,18 @@ namespace MediaVoirAdmin.Controllers
             DataTable dt = new DataTable();
             SqlConnection con = new SqlConnection(sqlcon);
             SqlCommand cmd = new SqlCommand("Admin_GetAllCompanies", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            adp.Fill(dt);
+            return dt;
+
+        }
+
+        public DataTable GetAllChannelList()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = new SqlConnection(sqlcon);
+            SqlCommand cmd = new SqlCommand("Admin_Select_AllChannel", con);
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter adp = new SqlDataAdapter(cmd);
             adp.Fill(dt);

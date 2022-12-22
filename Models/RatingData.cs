@@ -20,6 +20,12 @@ namespace MediaVoirAdmin.Models
         public string ChildCategoryName { get; set; }
     }
 
+    public class Channel
+    {
+        public int ChannelId { get; set; }
+        public string ChannelName { get; set; }
+    }
+
     public class Company
     {
         public int CompanyId { get; set; }
